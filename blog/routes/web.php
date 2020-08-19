@@ -19,9 +19,15 @@ Route::get('random', function () {
     return 'random page';
 });
 
+Route::get('articles', 'ArticleController@index');
+
+
+
+
 Route::any('/article/{article}/id/{id}', function ($articleID, $idArt) {
     return 'article id: ' . $idArt . ' est : ' . $articleID;
 });
+
 
 Route::any('/art/{article}/n/{id}', function ($articleID, $idArt) {
     return 'article id: ' . $idArt . ' est : ' . $articleID;
@@ -33,13 +39,16 @@ Route::any('/user/{user}/n/{num}', function ($numname, $userNum) {
 
 Route::get('/option/{param?}', function ($param = null) {
     return "le paramétre est  $param ";
-})->where("param", "[0-9]+");
+})->where("param", "[0-9]+")->name('opt');
+
+Route::get('content', 'ArticleController@content');
 
 /**
  *@param1 lien tapé
  *@param2 le nom du router surlequel on est rediriger
  *@param3 statue 301 qu iest une resdirection permanente
  */
+
 
 
 Route::redirect('/redirige', 'random', '301');
