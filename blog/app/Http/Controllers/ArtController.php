@@ -14,7 +14,7 @@ class ArtController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::all(); //équivalent de select * dans article
 
         return view('articles.index', compact('articles'));
     }
@@ -52,7 +52,8 @@ class ArtController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::find($id);
+        return view('articles.show', ['article' => $article]);
     }
 
     /**
@@ -63,7 +64,8 @@ class ArtController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -75,7 +77,12 @@ class ArtController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(['content' => 'required']);
+
+        $article = Article::find($id);
+        $article->content = $request->get('content');
+        $article->save();
+        return redirect('articles');
     }
 
     /**
@@ -86,6 +93,8 @@ class ArtController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        $article->delete();
+        return redirect('/articles');
     }
 }

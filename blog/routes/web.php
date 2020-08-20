@@ -53,7 +53,7 @@ Route::get('appli', function () {
 
 Route::match(['post', 'get'], 'app', 'AppController@app', ['id' => 5])->name('articles');
 
-//resources permet d'avoir tt les url de crud dans le controller en some
+//resources permet d'avoir tt les url de crud dans le controller en somme
 Route::resource('articles', 'ArtController');
 /**
  *@param1 lien tapé
