@@ -19,6 +19,7 @@ class ArticleController extends Controller
     {
         $url = route("opt", ['a' => 5]);
         //dd($url);
-        return redirect()->route("opt", ['a' => 5]);
+        $data = ['aze'];
+        return redirect()->route("opt", ['data' => $data]);
     }
 }

@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('random', function () {
+/*Route::get('random', function () {
     return 'random page';
 });
 
@@ -42,16 +42,26 @@ Route::get('/option/{param?}', function ($param = null) {
 })->where("param", "[0-9]+")->name('opt');
 
 Route::get('content', 'ArticleController@content');
+*/
+/*Route::get('index', function () {
+    return view('layouts.app');
+});*/
 
+Route::get('appli', function () {
+    return view('layouts.childApp', ['id' => 5]);
+});
+
+Route::match(['post', 'get'], 'app', 'AppController@app', ['id' => 5])->name('articles');
+
+//resources permet d'avoir tt les url de crud dans le controller en some
+Route::resource('articles', 'ArtController');
 /**
  *@param1 lien tapé
  *@param2 le nom du router surlequel on est rediriger
  *@param3 statue 301 qu iest une resdirection permanente
- */
-
-
-
+ *//*
 Route::redirect('/redirige', 'random', '301');
 
 //same as above
 Route::permanentRedirect('test', '/');
+ */
