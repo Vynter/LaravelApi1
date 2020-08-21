@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class ArtController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth'); // si vous n'etes pas co ca vous renvoi a login
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -65,3 +65,7 @@ Route::redirect('/redirige', 'random', '301');
 //same as above
 Route::permanentRedirect('test', '/');
  */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
