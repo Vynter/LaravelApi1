@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Mail\NewArticle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ArtController extends Controller
 {
@@ -50,6 +53,10 @@ class ArtController extends Controller
 
         $article = new Article(['content' => $request->get('content')]);
         $article->save();
+
+        $user = Auth::user(); // current user
+        Mail::to($user->email)->send(new NewArticle($article));
+
         return redirect('/articles'); // renvoi a index qui affiche le contenu de tout
     }
 
