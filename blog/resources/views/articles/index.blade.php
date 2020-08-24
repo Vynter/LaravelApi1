@@ -1,4 +1,4 @@
-@extends('layouts.aps')
+@extends('layouts.app')
 
 @section('title', 'Index Article')
 

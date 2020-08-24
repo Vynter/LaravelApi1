@@ -9,7 +9,7 @@
         @csrf
         <div class="form-group">
             <label for="content">Content :</label>
-            <input type="text" class="form-control" name="content"/>
+        <input type="text" class="form-control" name="content" value="{{$article->content}}"/>
         </div>
         <button type="submit" class="btn btn-primary">Valider</button>
     </form>

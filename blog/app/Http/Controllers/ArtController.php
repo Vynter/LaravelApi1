@@ -54,12 +54,14 @@ class ArtController extends Controller
         $article = new Article(['content' => $request->get('content')]);
         $article->save();
 
-        $request->image->storeAs('articles', $article->id . '.png');
-
+        if ($request->imagez) { // si on a pas upload l'image rien ne serait upload
+            $request->imagez->storeAs('articles', $article->id . '.png');
+        }
         $user = Auth::user(); // current user
         Mail::to($user->email)->send(new NewArticle($article));
 
-        return redirect('/articles'); // renvoi a index qui affiche le contenu de tout
+        return redirect('/articles')->with('success', 'votre article a été sauvegardé'); // renvoi a index qui affiche le contenu de tout
+        //le with passe des info flash en session
     }
 
     /**
@@ -100,7 +102,7 @@ class ArtController extends Controller
         $article = Article::find($id);
         $article->content = $request->get('content');
         $article->save();
-        return redirect('articles');
+        return redirect('articles')->with('update', 'votre article viens d\'être mis à jour');
     }
 
     /**
@@ -113,6 +115,6 @@ class ArtController extends Controller
     {
         $article = Article::find($id);
         $article->delete();
-        return redirect('/articles');
+        return redirect('/articles')->with('error', 'votre article a été supprimer');
     }
 }

@@ -28,6 +28,7 @@
                     left
                     @show
                 </div>
+                @include('flash-message')
                 <div class="col-sm">
                     @yield('content')
                 </div>
