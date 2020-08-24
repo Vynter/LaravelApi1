@@ -54,6 +54,8 @@ class ArtController extends Controller
         $article = new Article(['content' => $request->get('content')]);
         $article->save();
 
+        $request->image->storeAs('articles', $article->id . '.png');
+
         $user = Auth::user(); // current user
         Mail::to($user->email)->send(new NewArticle($article));
 
