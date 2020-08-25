@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Article;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('articles', 'ApiArticleController@index');
+Route::get('articles/{id}', 'ApiArticleController@show');
+Route::post('articles', 'ApiArticleController@store');
+Route::put('articles/{id}', 'ApiArticleController@update');
+Route::delete('articles/{id}', 'ApiArticleController@destroy');
